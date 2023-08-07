@@ -1,0 +1,72 @@
+﻿@model BlogsWebApp.Models.Blog
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto; 
+        padding: 20px;
+    }
+
+    .blog-container {
+        border: 1px solid #000000;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #232b2b;
+    }
+
+    .blog-title {
+        font-size: 56px;
+        font-weight: bold;
+    }
+
+    .blog-date {
+        font-size: 14px;
+    }
+
+    .blog-author {
+        font-size: 14px;
+    }
+
+    hr{
+        color: white;
+        border: none;
+        font-weight: bold;
+    }
+
+    .blog-image {
+        padding-top: 15px;
+        width: 650px;
+        height: 300px;
+    }
+
+
+    .blog-content {
+        padding-top: 25px;
+        font-size: 16px;
+    }
+</style>
+
+<div class="container">
+    <div class="blog-container">
+        <h1 class="blog-title text-light text-center">@Model.blogTitle</h1>
+        <p class="blog-date text-light text-center">Created on @Model.createdDate</p>
+        <p class="blog-author text-light text-center">Author: @Model.userName</p>
+        <hr />
+        <img src="@Model.imageLink" alt="Image" class="blog-image mx-auto d-block" />
+        <p class="blog-content text-light">@Model.blogContent</p>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="Index" class="btn btn-primary" style="width: 120px">Back to List</a>
+
+    @if (Model.userName == User.Identity.Name)
+    {
+        <a asp-action="Edit" asp-route-id="@Model?.BlogID" class="btn btn-primary" style="width: 120px">Edit</a>
+    }
+</div>

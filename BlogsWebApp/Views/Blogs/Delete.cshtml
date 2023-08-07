@@ -1,0 +1,72 @@
+﻿@model BlogsWebApp.Models.Blog
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .blog-container {
+        border: 1px solid #000000;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #232b2b;
+    }
+
+    .blog-title {
+        font-size: 56px;
+        font-weight: bold;
+    }
+
+    .blog-date {
+        font-size: 14px;
+    }
+
+    .blog-author {
+        font-size: 14px;
+    }
+
+    hr {
+        color: white;
+        border: none;
+        font-weight: bold;
+    }
+
+    .blog-image {
+        padding-top: 15px;
+        width: 650px;
+        height: 300px;
+    }
+
+
+    .blog-content {
+        padding-top: 25px;
+        font-size: 16px;
+    }
+</style>
+
+<h1 class="display-2 text-light text-center">Do you want to delete this blog?</h1>
+
+<div class="container">
+    <div class="blog-container">
+        <h1 class="blog-title text-light text-center">@Model.blogTitle</h1>
+        <p class="blog-date text-light text-center">Created on @Model.createdDate</p>
+        <p class="blog-author text-light text-center">Author: @Model.userName</p>
+        <hr />
+        <img src="@Model.imageLink" alt="Image" class="blog-image mx-auto d-block" />
+        <p class="blog-content text-light">@Model.blogContent</p>
+    </div>
+</div>
+
+<div class="text-center">
+    <form asp-action="Delete">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <input type="hidden" asp-for="BlogID" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </form>
+</div>

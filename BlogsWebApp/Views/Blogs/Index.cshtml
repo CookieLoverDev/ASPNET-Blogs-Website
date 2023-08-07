@@ -1,0 +1,93 @@
+﻿@model List<BlogsWebApp.Models.Blog>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body{
+        color: white;
+    }
+
+    .create-btn{
+        padding-top: 20px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+
+    .blog-container {
+        border: 1px solid #000000;
+        padding: 20px;
+        margin-bottom: 20px;
+        background: #232b2b;
+    }
+
+
+    .blog-title {
+        font-size: 42px;
+        font-weight: bold;
+    }
+
+    .blog-date {
+        font-size: 14px;
+    }
+
+    .blog-author {
+        font-size: 14px;
+    }
+
+    hr {
+        color: white;
+        border: none;
+        font-weight: bold;
+    }
+
+    .blog-image {
+        width: 650px;
+        height: 300px;
+    }
+
+    .blog-content {
+        font-size: 16px;
+    }
+</style>
+
+<h1 class="display-1 text-center">Blogs</h1>
+
+<div class="create-btn text-center">
+    <a asp-action="Create" class="btn btn-primary">Create Your Own Blog</a>
+</div>
+
+
+
+<div class="container">
+    @for (int i = Model.Count - 1; i >= 0; --i)
+    {
+        var blog = Model[i];
+        string preview = @blog.blogContent.Substring(0, 149);
+        string combined = string.Concat(preview, "...");
+        <div class="blog-container">
+            <a asp-action="Details" asp-route-id="@blog.BlogID" style="text-decoration: none;"><h1 class="blog-title text-light text-center">@blog.blogTitle</h1></a>
+            <div class="text-center">
+                <div class="blog-date d-inline text-light">Created on @blog.createdDate |</div>
+                <div class="blog-author d-inline text-light">Author: @blog.userName</div>
+            </div>
+            <hr>
+            <img src="@blog.imageLink" alt="Blog's Image" class="blog-image mx-auto d-block"><br>
+            <p class="blog-content text-light">@combined</p>
+            <a asp-action="Details" asp-route-id="@blog.BlogID" style="text-decoration: none;"><p class="text-muted text-light text-end">Read more</p></a>
+            @if (blog.userName == User.Identity.Name)
+            {
+                <div class="text-center">
+                    <a asp-action="Edit" asp-route-id="@blog.BlogID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@blog.BlogID">Delete</a>
+                </div>
+            }
+        </div>
+    }
+</div>
+

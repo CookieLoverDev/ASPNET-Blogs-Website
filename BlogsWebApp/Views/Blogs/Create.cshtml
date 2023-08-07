@@ -1,0 +1,50 @@
+﻿@model BlogsWebApp.Models.Blog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+
+    hr {
+        color: white;
+        border: none;
+        font-weight: bold;
+        height: 10px;
+    }
+</style>
+
+<h1 class="text-light text-center" style="padding-top: 20px">Create a new blog</h1>
+
+<hr />
+<div class="row justify-content-center text-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="blogTitle" class="control-label"><h4 class="text-light">Blog's Title</h4></label>
+                <input asp-for="blogTitle" class="form-control" />
+                <span asp-validation-for="blogTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top: 20px">
+                <label asp-for="imageLink" class="control-label"><h4 class="text-light">Blog's Image Link</h4></label>
+                <input asp-for="imageLink" class="form-control" />
+                <span asp-validation-for="imageLink" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top: 20px">
+                <label asp-for="blogContent" class="control-label"><h4 class="text-light">Blog's Content</h4></label>
+                <textarea asp-for="blogContent" class="form-control"></textarea>
+                <span asp-validation-for="blogContent" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top: 40px;">
+                <a asp-action="Index" class="btn btn-secondary" style="width:120px">Back to List</a>
+                <input type="submit" value="Create" class="btn btn-primary" style="width:120px" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
