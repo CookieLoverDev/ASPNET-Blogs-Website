@@ -16,8 +16,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = "157570235543-ab9ogbtq5abvhvbh2fqqcgntp6pmv32q.apps.googleusercontent.com";
-    googleOptions.ClientSecret = "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";
+    googleOptions.ClientId = "Your Client ID";
+    googleOptions.ClientSecret = "Your Client Secret";
 });
 
 var app = builder.Build();
